@@ -1,0 +1,52 @@
+{
+  "nodes": [
+    { "id": "center", "group": 0 },
+    { "id": "MILO-1", "group": 1, "img": "milo.jpeg" },
+    { "id": "MILO-2", "group": 1, "img": "milo2.jpeg" },
+    { "id": "MILO-3", "group": 1, "img": "milo3.jpeg" },
+    { "id": "dog gallery", "group": 1 },
+    { "id": "notes threejs", "group": 2 },
+    { "id": "NOTE-1", "group": 2, "text": "learn threejs" },
+    { "id": "NOTE-2", "group": 2, "text": "learn threejs" },
+    { "id": "NOTE-3", "group": 2, "text": "learn threejs" },
+    { "id": "NOTE-4", "group": 2, "text": "learn threejs" },
+    { "id": "NOTE-5", "group": 2, "text": "learn threejs" },
+    { "id": "NOTE-6", "group": 2, "text": "learn threejs" },
+    { "id": "how to light", "group": 3 },
+    { "id": "howto-1", "group": 3, "text": "do this" },
+    { "id": "howto-2", "group": 3, "text": "then that" },
+    { "id": "howto-3", "group": 3, "text": "undo this" },
+    { "id": "howto-4", "group": 3, "text": "stop doing it" },
+    { "id": "todo", "group": 4 },
+    { "id": "todo-1", "group": 4, "text": "buy stuff" },
+    { "id": "todo-2", "group": 4, "text": "cook food" },
+    {
+      "id": "todo-3-link",
+      "group": 4,
+      "text": " --> hyperlinks in threejs",
+      "link": "https://stackoverflow.com/questions/24690731/three-js-3d-models-as-hyperlink"
+    }
+  ],
+  "links": [
+    { "source": "todo", "target": "todo-1", "value": 0 },
+    { "source": "todo", "target": "todo-2", "value": 0 },
+    { "source": "todo", "target": "todo-3-link", "value": 0 },
+    { "source": "center", "target": "dog gallery", "value": 0 },
+    { "source": "center", "target": "notes threejs", "value": 2 },
+    { "source": "notes threejs", "target": "NOTE-1", "value": 2 },
+    { "source": "notes threejs", "target": "NOTE-2", "value": 2 },
+    { "source": "notes threejs", "target": "NOTE-3", "value": 2 },
+    { "source": "notes threejs", "target": "NOTE-4", "value": 2 },
+    { "source": "notes threejs", "target": "NOTE-5", "value": 2 },
+    { "source": "notes threejs", "target": "NOTE-6", "value": 2 },
+    { "source": "center", "target": "how to light", "value": 3 },
+    { "source": "how to light", "target": "howto-1", "value": 3 },
+    { "source": "how to light", "target": "howto-2", "value": 3 },
+    { "source": "how to light", "target": "howto-3", "value": 3 },
+    { "source": "how to light", "target": "howto-4", "value": 3 },
+    { "source": "dog gallery", "target": "MILO-1", "value": 1 },
+    { "source": "dog gallery", "target": "MILO-1", "value": 1 },
+    { "source": "dog gallery", "target": "MILO-2", "value": 1 },
+    { "source": "dog gallery", "target": "MILO-3", "value": 1 }
+  ]
+}

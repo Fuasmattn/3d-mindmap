@@ -1,0 +1,82 @@
+<head>
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
+
+  <script src="https://unpkg.com/three"></script>
+  <script src="https://unpkg.com/three-spritetext"></script>
+  <script src="https://unpkg.com/3d-force-graph"></script>
+</head>
+
+<body>
+  <div id="3d-graph"></div>
+
+  <script>
+    const objects = [];
+
+    const graph = ForceGraph3D()(document.getElementById("3d-graph"))
+      .nodeThreeObject(({ id, img, text, link }) => {
+        if (img) {
+          const imgTexture = new THREE.TextureLoader().load(`./imgs/${img}`);
+          const material = new THREE.SpriteMaterial({ map: imgTexture });
+          const sprite = new THREE.Sprite(material);
+          sprite.scale.set(5, 8);
+          return sprite;
+        } else if (text) {
+          const sprite = new SpriteText(text);
+          sprite.material.depthWrite = false;
+          sprite.color = "#ffffff";
+          sprite.textHeight = 4;
+
+          objects.push(sprite);
+
+          return sprite;
+        } else if (link && text) {
+          const sprite = new SpriteText(text);
+          sprite.material.depthWrite = false;
+          sprite.color = "#ffffff";
+          sprite.textHeight = 4;
+          sprite.userData = { URL: link };
+
+          objects.push(sprite);
+
+          return sprite;
+        } else if (!["center", "todo"].includes(id)) {
+          const geometry = new THREE.BoxGeometry(5, 5, 5);
+          const material = new THREE.MeshLambertMaterial({
+            color: 0x00ffae,
+          });
+          const cube = new THREE.Mesh(geometry, material);
+          return cube;
+        }
+      })
+      .onNodeClick((node) => {
+        if (node.link) {
+          window.open(node.link);
+        } else {
+          // https://github.com/vasturiano/3d-force-graph/blob/master/example/click-to-focus/index.html
+          // Aim at node from outside it
+          const distance = node.img ? 20 : 100;
+          const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
+
+          graph.cameraPosition(
+            {
+              x: node.x * distRatio,
+              y: node.y * distRatio,
+              z: node.z * distRatio,
+            }, // new position
+            node, // lookAt ({ x, y, z })
+            3000 // ms transition duration
+          );
+        }
+      })
+      .jsonUrl("../datasets/milorables.json")
+      .nodeLabel("id")
+      .enableNodeDrag(false)
+      .nodeAutoColorBy("group");
+
+    const scene = graph.scene();
+  </script>
+</body>
